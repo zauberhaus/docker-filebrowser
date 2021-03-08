@@ -48,15 +48,14 @@ jobs:
 
     - name: Run Buildx
       run: |
-        V1=$(echo "${{ steps.prepare.outputs.version }}" | sed -e 's/^v//' | sed -e 's/-.*$//')
-        V2=$(echo "${{ steps.prepare.outputs.version }}" | sed -e 's/-.*$//')
+        V=$(echo "${{ steps.prepare.outputs.version }}" | sed -e 's/-.*$//')
         docker buildx build \
           --output type=image,name=${{ steps.prepare.outputs.docker_image }},push=true \
           --platform ${{ steps.prepare.outputs.docker_platforms }} \
-          --tag "${{ steps.prepare.outputs.docker_image }}:$V1" \
+          --tag "${{ steps.prepare.outputs.docker_image }}:$V" \
           --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.hash }}" \
           --tag "${{ steps.prepare.outputs.docker_image }}:latest" \
-          --build-arg VERSION="$V2" \
+          --build-arg TAG="$V" \
           --file Dockerfile .
 
     - name: Create Release

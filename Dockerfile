@@ -1,4 +1,5 @@
-FROM filebrowser/filebrowser
+ARG TAG=latest
+FROM filebrowser/filebrowser:${TAG}
 
 ENV PORT=8080
 ENV USER=admin
