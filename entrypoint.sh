@@ -13,7 +13,7 @@ if [ -z "$PASSWORD_HASH" ] ; then
 fi
 
 if [ -z "$@" ] ; then
-    /filebrowser --username $USER --password $PASSWORD_HASH --port $PORT -a "$ADDRESS"
+    /filebrowser --username $USER --password $PASSWORD_HASH --port $PORT -a "$ADDRESS" -d "/data/filebrowser.db"
 else
     exec $@    
 fi

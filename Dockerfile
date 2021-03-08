@@ -10,4 +10,7 @@ ENV ADDRESS=
 RUN rm /.filebrowser.json
 COPY entrypoint.sh /entrypoint.sh
 
+RUN mkdir -p /data
+
+WORKDIR /srv
 ENTRYPOINT [ "/entrypoint.sh" ]
